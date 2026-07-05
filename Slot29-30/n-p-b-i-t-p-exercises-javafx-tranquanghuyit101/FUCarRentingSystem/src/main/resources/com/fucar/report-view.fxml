@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="12" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fucar.controller.ReportController"
+      stylesheets="@style.css"
+      prefWidth="860" prefHeight="640">
+    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+    <!-- Bộ lọc -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Từ ngày:"/>
+        <DatePicker fx:id="dpStart" prefWidth="140"/>
+        <Label text="Đến ngày:"/>
+        <DatePicker fx:id="dpEnd" prefWidth="140"/>
+        <ComboBox fx:id="cbReportType" prefWidth="210"/>
+        <Button text="Tạo báo cáo" onAction="#handleGenerate" styleClass="btn-primary"/>
+        <Button text="Xuất PDF"    onAction="#handleExportPdf" styleClass="btn-danger"/>
+    </HBox>
+
+    <!-- 4 thẻ tóm tắt -->
+    <HBox spacing="12">
+        <VBox fx:id="cardTotal"   styleClass="card" prefWidth="190"
+              alignment="CENTER" spacing="6"/>
+        <VBox fx:id="cardRevenue" styleClass="card" prefWidth="190"
+              alignment="CENTER" spacing="6"/>
+        <VBox fx:id="cardCars"    styleClass="card" prefWidth="190"
+              alignment="CENTER" spacing="6"/>
+        <VBox fx:id="cardNewCus"  styleClass="card" prefWidth="190"
+              alignment="CENTER" spacing="6"/>
+    </HBox>
+
+    <!-- TabPane chart -->
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="📊 Biểu đồ cột">
+            <BarChart fx:id="barChart">
+                <xAxis><CategoryAxis label="Tháng"/></xAxis>
+                <yAxis><NumberAxis label="Doanh thu (triệu VNĐ)"/></yAxis>
+            </BarChart>
+        </Tab>
+        <Tab text="📈 Biểu đồ đường">
+            <LineChart fx:id="lineChart">
+                <xAxis><CategoryAxis label="Tuần"/></xAxis>
+                <yAxis><NumberAxis label="Số giao dịch"/></yAxis>
+            </LineChart>
+        </Tab>
+        <Tab text="🥧 Biểu đồ tròn">
+            <PieChart fx:id="pieChart" labelsVisible="true"/>
+        </Tab>
+    </TabPane>
+
+    <!-- Bảng chi tiết -->
+    <TableView fx:id="tableDetail" prefHeight="160">
+        <columns>
+            <TableColumn text="STT"        prefWidth="45"/>
+            <TableColumn text="Mã GD"      prefWidth="90"/>
+            <TableColumn text="Tên KH"     prefWidth="150"/>
+            <TableColumn text="Tên xe"     prefWidth="150"/>
+            <TableColumn text="Ngày lấy"   prefWidth="90"/>
+            <TableColumn text="Ngày trả"   prefWidth="90"/>
+            <TableColumn text="Thành tiền" prefWidth="120"/>
+            <TableColumn text="Trạng thái" prefWidth="100"/>
+        </columns>
+        <placeholder><Label text="Không có giao dịch trong khoảng thời gian này"/></placeholder>
+    </TableView>
+</VBox>

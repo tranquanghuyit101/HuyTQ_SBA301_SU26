@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fucar.controller.CustomerController"
+      stylesheets="@style.css"
+      prefWidth="860" prefHeight="500">
+    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+    <!-- Thanh công cụ -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="QUẢN LÝ KHÁCH HÀNG" styleClass="screen-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Thêm KH" onAction="#handleAdd" styleClass="btn-primary"/>
+        <Button fx:id="btnDeleteMulti" text="Xóa nhiều"
+                onAction="#handleDeleteMulti" styleClass="btn-danger" disable="true"/>
+        <Button text="Xuất Excel" onAction="#handleExport" styleClass="btn-success"/>
+    </HBox>
+
+    <!-- Tìm kiếm -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField"
+                   promptText="Tìm theo tên, SĐT, CCCD, email..." prefWidth="320"/>
+        <ComboBox fx:id="cbSearchField" prefWidth="170"/>
+        <Button text="Xóa bộ lọc" onAction="#handleClearFilter"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblCount" style="-fx-text-fill:#555555;"/>
+    </HBox>
+
+    <!-- TableView -->
+    <TableView fx:id="tableCustomer" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"      text="Mã KH"      prefWidth="90"/>
+            <TableColumn fx:id="colName"    text="Họ tên"     prefWidth="170"/>
+            <TableColumn fx:id="colMobile"  text="Số ĐT"      prefWidth="110"/>
+            <TableColumn fx:id="colBirth"   text="Ngày sinh"  prefWidth="100"/>
+            <TableColumn fx:id="colIdCard"  text="CCCD"       prefWidth="120"/>
+            <TableColumn fx:id="colEmail"   text="Email"      prefWidth="170"/>
+            <TableColumn fx:id="colStatus"  text="Trạng thái" prefWidth="110"/>
+        </columns>
+        <placeholder><Label text="Không có dữ liệu khách hàng"/></placeholder>
+    </TableView>
+</VBox>

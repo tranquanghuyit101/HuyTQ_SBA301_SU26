@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fucar.controller.MainController"
+            stylesheets="@style.css"
+            prefWidth="1024" prefHeight="680">
+
+    <!-- TOP: MenuBar + ToolBar -->
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Hệ thống">
+                    <MenuItem text="Đăng nhập lại" onAction="#handleLogout"/>
+                    <MenuItem text="Đổi mật khẩu"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Thoát" onAction="#handleExit"/>
+                </Menu>
+                <Menu text="Quản lý">
+                    <MenuItem text="Quản lý xe"            onAction="#navCars"/>
+                    <MenuItem text="Quản lý khách hàng"    onAction="#navCustomers"/>
+                    <MenuItem text="Giao dịch thuê xe"     onAction="#navRental"/>
+                </Menu>
+                <Menu text="Báo cáo">
+                    <MenuItem text="Báo cáo theo kỳ"       onAction="#navReport"/>
+                    <MenuItem text="Xuất Excel"/>
+                </Menu>
+                <Menu text="Trợ giúp">
+                    <MenuItem text="Hướng dẫn sử dụng"/>
+                    <MenuItem text="Về chúng tôi"/>
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <Button fx:id="btnCars"      text="🚗 Quản lý xe"  onAction="#navCars"/>
+                <Button fx:id="btnCustomers" text="👤 Quản lý KH"   onAction="#navCustomers"/>
+                <Button fx:id="btnRental"    text="📋 Giao dịch"   onAction="#navRental"/>
+                <Button fx:id="btnReport"    text="📊 Báo cáo"     onAction="#navReport"/>
+                <Separator/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblUser"
+                       text="Xin chào, Admin"
+                       style="-fx-font-weight:bold;-fx-padding:0 10 0 0;"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- LEFT: Accordion menu -->
+    <left>
+        <VBox prefWidth="200"
+              style="-fx-background-color:#1A237E;">
+            <Label text="MENU CHÍNH"
+                   maxWidth="Infinity" alignment="CENTER"
+                   style="-fx-font-weight:bold;-fx-text-fill:white;
+                          -fx-padding:12;-fx-font-size:13px;"/>
+            <Accordion fx:id="accordion">
+                <panes>
+                    <TitledPane text="🗂 Quản lý">
+                        <VBox spacing="2" style="-fx-padding:4 0;">
+                            <Button text="  🚗 Quản lý xe"      styleClass="nav-button"
+                                    maxWidth="Infinity" onAction="#navCars"/>
+                            <Button text="  👤 Quản lý KH"      styleClass="nav-button"
+                                    maxWidth="Infinity" onAction="#navCustomers"/>
+                            <Button text="  📋 Giao dịch"       styleClass="nav-button"
+                                    maxWidth="Infinity" onAction="#navRental"/>
+                        </VBox>
+                    </TitledPane>
+                    <TitledPane text="📊 Báo cáo">
+                        <VBox spacing="2" style="-fx-padding:4 0;">
+                            <Button text="  📅 Báo cáo kỳ"      styleClass="nav-button"
+                                    maxWidth="Infinity" onAction="#navReport"/>
+                            <Button text="  📈 Thống kê tổng"   styleClass="nav-button"
+                                    maxWidth="Infinity"/>
+                        </VBox>
+                    </TitledPane>
+                    <TitledPane text="⚙ Cài đặt">
+                        <VBox spacing="2" style="-fx-padding:4 0;">
+                            <Button text="  🔑 Đổi mật khẩu"    styleClass="nav-button"
+                                    maxWidth="Infinity"/>
+                            <Button text="  ℹ Thông tin hệ thống" styleClass="nav-button"
+                                    maxWidth="Infinity"/>
+                        </VBox>
+                    </TitledPane>
+                </panes>
+            </Accordion>
+        </VBox>
+    </left>
+
+    <!-- CENTER: StackPane chứa các màn hình -->
+    <center>
+        <StackPane fx:id="contentArea">
+            <VBox alignment="CENTER" spacing="16">
+                <Label text="Chào mừng đến với FUCarRentingSystem"
+                       style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#1F4E79;"/>
+                <Label text="Chọn chức năng từ menu bên trái"
+                       style="-fx-font-size:14px;-fx-text-fill:#757575;"/>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- BOTTOM: StatusBar -->
+    <bottom>
+        <HBox style="-fx-background-color:#E3F2FD;-fx-padding:4 10;"
+              alignment="CENTER_LEFT" spacing="10">
+            <Label fx:id="lblStatus" text="Sẵn sàng"
+                   style="-fx-text-fill:#555;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblDateTime"
+                   style="-fx-text-fill:#555;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

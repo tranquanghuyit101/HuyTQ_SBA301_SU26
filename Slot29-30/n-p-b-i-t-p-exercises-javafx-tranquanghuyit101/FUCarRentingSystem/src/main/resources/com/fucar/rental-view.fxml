@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="14" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fucar.controller.RentalController"
+      stylesheets="@style.css"
+      prefWidth="620" prefHeight="580">
+    <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+
+    <Label text="TẠO GIAO DỊCH THUÊ XE" styleClass="screen-title"/>
+
+    <!-- Thông tin KH -->
+    <TitledPane text="Thông tin khách hàng" collapsible="false">
+        <GridPane hgap="10" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Khách hàng *:"  GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <HBox spacing="6"            GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <ComboBox fx:id="customerCombo" prefWidth="250"
+                          promptText="Chọn khách hàng"/>
+                <Button text="Tìm KH" onAction="#handleFindCustomer"/>
+            </HBox>
+            <Label text="Mã KH:"         GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="lblCusId"      GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="SĐT:"           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="lblCusMobile"  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <ColumnConstraints minWidth="120"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </GridPane>
+    </TitledPane>
+
+    <!-- Thông tin xe -->
+    <TitledPane text="Thông tin xe" collapsible="false">
+        <GridPane hgap="10" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Xe *:"           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <HBox spacing="6"             GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <ComboBox fx:id="carCombo" prefWidth="250"
+                          promptText="Chọn xe (Có sẵn)"/>
+                <Button text="Tìm xe" onAction="#handleFindCar"/>
+            </HBox>
+            <Label text="Tên xe:"         GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="lblCarName"     GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Giá thuê/ngày:"  GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="lblPricePerDay" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                   style="-fx-font-weight:bold;-fx-text-fill:#1565C0;"/>
+            <ColumnConstraints minWidth="120"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </GridPane>
+    </TitledPane>
+
+    <!-- Thời gian thuê -->
+    <TitledPane text="Thời gian thuê" collapsible="false">
+        <GridPane hgap="10" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Ngày lấy xe *:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <DatePicker fx:id="dpPickup" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Ngày trả xe *:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <DatePicker fx:id="dpReturn" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Số ngày:"       GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="lblDays"       GridPane.columnIndex="1" GridPane.rowIndex="2"
+                   style="-fx-font-weight:bold;"/>
+            <Label text="Tiến độ (max 30 ngày):"
+                                         GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <ProgressBar fx:id="progressDays"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="3"
+                          prefWidth="200" progress="0"/>
+            <ColumnConstraints minWidth="160"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </GridPane>
+    </TitledPane>
+
+    <!-- Tổng tiền -->
+    <HBox spacing="20" alignment="CENTER_LEFT"
+          style="-fx-background-color:#E3F2FD;-fx-background-radius:8;-fx-padding:12;">
+        <Label text="THÀNH TIỀN:"
+               style="-fx-font-size:16px;-fx-font-weight:bold;"/>
+        <Label fx:id="lblTotal"
+               style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#C62828;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="cbStatus" prefWidth="170"/>
+    </HBox>
+
+    <!-- Nút -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="HỦY"          onAction="#handleCancel"/>
+        <Button text="TẠO GIAO DỊCH" onAction="#handleCreate"
+                styleClass="btn-primary" defaultButton="true"/>
+    </HBox>
+</VBox>

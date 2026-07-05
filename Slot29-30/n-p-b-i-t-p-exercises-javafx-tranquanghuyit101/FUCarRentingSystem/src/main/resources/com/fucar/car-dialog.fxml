@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="0" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fucar.controller.CarDialogController"
+      stylesheets="@style.css"
+      prefWidth="600" prefHeight="560">
+    <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+
+    <Label fx:id="lblTitle" text="Thêm thông tin xe"
+           styleClass="screen-title"/>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-border-color:transparent;-fx-background-color:transparent;">
+        <GridPane hgap="12" vgap="4">
+            <padding><Insets top="14" bottom="14"/></padding>
+
+            <!-- Mã xe -->
+            <Label text="Mã xe:"         GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="tfCarId"   GridPane.columnIndex="1" GridPane.rowIndex="0"
+                       editable="false"  text="Tự động tạo"
+                       style="-fx-background-color:#EEEEEE;"/>
+
+            <!-- Tên xe -->
+            <Label text="Tên xe *:"      GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="tfCarName" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       promptText="VD: Toyota Camry"/>
+            <Label fx:id="errCarName"    GridPane.columnIndex="1" GridPane.rowIndex="3"
+                   styleClass="label-error"/>
+
+            <!-- Năm SX -->
+            <Label text="Năm SX *:"           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Spinner fx:id="spinnerYear"      GridPane.columnIndex="1" GridPane.rowIndex="4"
+                     editable="true" prefWidth="150"/>
+
+            <!-- Màu sắc -->
+            <Label text="Màu sắc:"            GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <ComboBox fx:id="cbColor"         GridPane.columnIndex="1" GridPane.rowIndex="6"
+                      maxWidth="Infinity"/>
+
+            <!-- Số chỗ -->
+            <Label text="Số chỗ *:"           GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+            <Spinner fx:id="spinnerCapacity"  GridPane.columnIndex="1" GridPane.rowIndex="8"
+                     prefWidth="150"/>
+
+            <!-- Giá thuê -->
+            <Label text="Giá thuê/ngày *:"    GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+            <TextField fx:id="tfRentPrice"    GridPane.columnIndex="1" GridPane.rowIndex="10"
+                       promptText="VD: 500000"/>
+            <Label fx:id="errRentPrice"       GridPane.columnIndex="1" GridPane.rowIndex="11"
+                   styleClass="label-error"/>
+
+            <!-- Ngày nhập -->
+            <Label text="Ngày nhập *:"        GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+            <DatePicker fx:id="dpImport"      GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+            <Label fx:id="errImport"          GridPane.columnIndex="1" GridPane.rowIndex="13"
+                   styleClass="label-error"/>
+
+            <!-- Nhà SX -->
+            <Label text="Nhà SX *:"           GridPane.columnIndex="0" GridPane.rowIndex="14"/>
+            <ComboBox fx:id="cbProducer"      GridPane.columnIndex="1" GridPane.rowIndex="14"
+                      maxWidth="Infinity" promptText="Chọn nhà sản xuất"/>
+            <Label fx:id="errProducer"        GridPane.columnIndex="1" GridPane.rowIndex="15"
+                   styleClass="label-error"/>
+
+            <!-- Mô tả -->
+            <Label text="Mô tả:"              GridPane.columnIndex="0" GridPane.rowIndex="16"/>
+            <TextArea fx:id="taDesc"          GridPane.columnIndex="1" GridPane.rowIndex="16"
+                      prefRowCount="3" promptText="Mô tả thêm về xe..."/>
+
+            <!-- Trạng thái -->
+            <Label text="Trạng thái:"         GridPane.columnIndex="0" GridPane.rowIndex="18"/>
+            <HBox spacing="12"                GridPane.columnIndex="1" GridPane.rowIndex="18">
+                <RadioButton fx:id="rbAvailable"   text="Có sẵn"/>
+                <RadioButton fx:id="rbRenting"     text="Đang cho thuê"/>
+                <RadioButton fx:id="rbMaintenance" text="Bảo dưỡng"/>
+            </HBox>
+
+            <ColumnConstraints minWidth="130" maxWidth="140"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </GridPane>
+    </ScrollPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <padding><Insets top="12"/></padding>
+        <Button text="HỦY" onAction="#handleCancel"
+                style="-fx-background-color:#757575;-fx-text-fill:white;-fx-cursor:hand;"/>
+        <Button text="LƯU" onAction="#handleSave" styleClass="btn-primary"
+                defaultButton="true"/>
+    </HBox>
+</VBox>
